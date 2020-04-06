@@ -1,9 +1,8 @@
 from typing import TypeVar
-import
+import pyodbc
 
-Class Cls_CustomerTransactions:
 
-    Conn =
+Class Cls_CustomerTransactions ():
 
     def account_balance (accountnumber:float)->  float:
         if accountnumber != 0:
