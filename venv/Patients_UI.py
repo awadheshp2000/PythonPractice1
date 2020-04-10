@@ -1,4 +1,6 @@
+from tkinter import Entry
 from typing import TypeVar, Generic
+import psycopg2
 from tkinter import *
 
 class Patient_load:
@@ -26,14 +28,43 @@ class Patient_load:
         self.text4.place(x=300, y=110)
 
         self.button = Button(win,text="Save", fg="blue")
+        self.button.bind('<Button-1>', self.save_patients)
         self.button.place(x=225, y= 170)
-        #self.button.bind('<Button-1>',save_patients())
 
-    def save_patients(self):
-        print(self.text1.get())
-        print(self.text2.get())
-        print(self.text3.get())
-        print(self.text4.get())
+   def save_patients(self, event):
+       try:
+           connection1 = psycopg2.connect(
+               database="patientdatabase",
+               user="postgres",
+               password="postgres",
+               host="localhost",
+               port="5432"
+           )
+
+           cursor = connection1.cursor()
+           string1: str = self.text1.get()
+           float1 = float(self.text2.get())
+           float2 = float(self.text3.get())
+           float3 = float(self.text4.get())
+           #cursor.execute("insert into PatientMaster (Name, Age, Height, Weight) values (:Name, :Age, :Height, :Weight)",
+           #               {"Name":string1, "Age":float1, "Height": float2, "Weight": float3})
+
+           print("insert into PatientMaster (Name, Age, Height, Weight) values (%s, %f, %f, %f) " % ( + "'" + string1 + "'" +, float1, float2, float3))
+
+
+           connection1.commit()
+
+       except (Exception, psycopg2.Error) as error:
+           print("Error while fetching data from PostgreSQL", error)
+
+       finally:
+           # closing database connection.
+           if (connection1):
+               cursor.close()
+               connection1.close()
+           print("PostgreSQL connection is closed")
+
+
 
 windows = Tk()
 Patient_load1 = Patient_load(windows)
