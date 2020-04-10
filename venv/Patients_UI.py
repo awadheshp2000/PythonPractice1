@@ -27,9 +27,13 @@ class Patient_load:
         self.text4 = Entry(win,text="Weight", bd=4)
         self.text4.place(x=300, y=110)
 
-        self.button = Button(win,text="Save", fg="blue")
-        self.button.bind('<Button-1>', self.save_patients)
-        self.button.place(x=225, y= 170)
+        self.button1 = Button(win,text="Save", fg="black")
+        self.button1.bind('<Button-1>', self.save_patients)
+        self.button1.place(x=175, y= 170)
+
+        self.button2 = Button(win,text="Refresh", fg="black")
+        self.button2.bind('<Button-1>',self.refresh)
+        self.button2.place(x=325, y=170)
 
    def save_patients(self, event):
        try:
@@ -46,12 +50,8 @@ class Patient_load:
            float1 = float(self.text2.get())
            float2 = float(self.text3.get())
            float3 = float(self.text4.get())
-           #cursor.execute("insert into PatientMaster (Name, Age, Height, Weight) values (:Name, :Age, :Height, :Weight)",
-           #               {"Name":string1, "Age":float1, "Height": float2, "Weight": float3})
 
-           print("insert into PatientMaster (Name, Age, Height, Weight) values (%s, %f, %f, %f) " % ( + "'" + string1 + "'" +, float1, float2, float3))
-
-
+           cursor.execute("""insert into PatientMaster (Name, Age, Height, Weight) values ('%s', %f, %f, %f) """ % (string1, float1, float2, float3))
            connection1.commit()
 
        except (Exception, psycopg2.Error) as error:
@@ -64,6 +64,12 @@ class Patient_load:
                connection1.close()
            print("PostgreSQL connection is closed")
 
+
+   def refresh(self,event):
+       self.text1.delete(0,END)
+       self.text2.delete(0,END)
+       self.text3.delete(0,END)
+       self.text4.delete(0,END)
 
 
 windows = Tk()
