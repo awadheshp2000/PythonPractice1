@@ -71,6 +71,9 @@ class Patient_load:
        self.text3.delete(0,END)
        self.text4.delete(0,END)
 
+   def test_sum (number1: float, number2:float)->float:
+       return number1 + number2
+
 
 windows = Tk()
 Patient_load1 = Patient_load(windows)
