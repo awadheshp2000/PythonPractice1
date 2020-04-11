@@ -1,5 +1,5 @@
 from typing import TypeVar, Generic
-import Patient_Prediction
+import Patient_prediction
 
 def test_sum():
     number1: float = 400

@@ -1,5 +1,5 @@
 from typing import TypeVar, Generic
 
-class Patient_Prediction:
-    def test_sum(number1: float, number2: float) -> float:
-        return number1 + number2
+class Patient_prediction:
+    def test_sum (a, b):
+        return a + b
