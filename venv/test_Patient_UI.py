@@ -1,3 +1,4 @@
+from typing import TypeVar, Generic
 import Patient_Prediction
 
 def test_sum():
