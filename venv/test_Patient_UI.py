@@ -1,4 +1,4 @@
-import Patients_UI
+import Patient_Prediction
 
 def test_sum():
     number1: float = 400
