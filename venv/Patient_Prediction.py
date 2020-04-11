@@ -1,5 +1,5 @@
 
 
-class Patient_Prediction:
-    def test_sum1 (a,b):
+class Patient_Predict:
+    def test_sum1 (a: float,b:float):
         return a+b
