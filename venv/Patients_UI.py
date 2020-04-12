@@ -72,6 +72,7 @@ class Patient_load:
        self.text4.delete(0,END)
 
 
+
 windows = Tk()
 Patient_load1 = Patient_load(windows)
 windows.title("Patient Prediction")
