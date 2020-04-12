@@ -46,7 +46,7 @@ class Patient_load:
            )
 
            cursor = connection1.cursor()
-           string1: str = self.text1.get()
+           string1: str = str(self.text1.get())
            float1 = float(self.text2.get())
            float2 = float(self.text3.get())
            float3 = float(self.text4.get())
